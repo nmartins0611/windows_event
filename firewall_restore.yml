@@ -22,7 +22,7 @@
         name: Firewall_disable
         triggers: 
           - type: event
-            subsription:  <QueryList><Query Id="0" Path="Microsoft-Windows-Windows Firewall With Advanced Security/Firewall"><Select Path="Microsoft-Windows-Windows Firewall With Advanced Security/Firewall">*[System[(EventID=2003)]]</Select></Query></QueryList>
+            subscription:  <QueryList><Query Id="0" Path="Microsoft-Windows-Windows Firewall With Advanced Security/Firewall"><Select Path="Microsoft-Windows-Windows Firewall With Advanced Security/Firewall">*[System[(EventID=2003)]]</Select></Query></QueryList>
         actions:
           - path: C:\Users\Administrator\Documents\callback.bat   
         username: Administrator
