@@ -4,7 +4,7 @@
 
      - name: Checking system against CIS 2022 Server Baselines
        block:
-         - name: Enable firewall for Domain, Public and Private profiles
+         - name: Checking system against CIS 2022 Server Baselines
            win_firewall:
              state: enabled
              profiles:
