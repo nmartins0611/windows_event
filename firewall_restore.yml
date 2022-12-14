@@ -29,18 +29,15 @@
         state: present
         tags: create_event
 
-  #- name: Create incident
-  #    servicenow.itsm.incident:
-  #     instance:
-   #     host: https://{{ SN_INSTANCE }}.service-now.com/
-   #     username: "{{ SN_USERNAME }}"
-   #     password: "{{ SN_PASSWORD }}"
-
-   #    state: new
-   #    caller: admin
-   #    short_description: System Remediation limit hit. Severity High - Nuno Help us!
-  #     description: node01.nostromo.co.za is in a critical condition. Remediation attempts have hit level 5 n/ {{ aide_results }}
-  #     attachments:
-  #      - path: /tmp/aide.txt
-  #     urgency: high
-  #     impact: high
+    - name: Create incident
+      servicenow.itsm.incident:
+       instance:
+        host: https://{{ SN_INSTANCE }}.service-now.com/
+        username: "{{ SN_USERNAME }}"
+        password: "{{ SN_PASSWORD }}"
+       state: new
+       caller: admin
+       short_description: Firewall Compliance Failure on Node
+       description: Node impacted by compliance policy failure on Firewall Settings
+       urgency: high
+       impact: high
