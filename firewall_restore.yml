@@ -36,19 +36,21 @@
         state: present
         tags: create_event
 
-    - name: print vars
-      debug:
-        msg: "{{ SN_INSTANCE }}"
+    - name: Create incident
+      servicenow.itsm.incident:
+        state: new
+        caller: "{{ lookup('env', 'SN_USERNAME') }}"
+        short_description: "User created a new incident using Ansible Automation Platform"
+        description: "User {{ lookup('env', 'SN_USERNAME') }} successfully created a new incident!"
+        impact: low
+        urgency: low
+      register: new_incident
 
-   # - name: Create incident
-     # servicenow.itsm.incident:
-    #   instance:
-   #     host: "https://{{ SN_INSTANCE }}.service-now.com/"
-  #      username: "{{ SN_USERNAME }}"
- #       password: "{{ SN_PASSWORD }}"
-#       state: new
-#       caller: admin
-#       short_description: Firewall Compliance Failure on Node
-#       description: Node impacted by compliance policy failure on Firewall Settings
-#       urgency: high
-#       impact: high
+    - set_fact:
+        incident_number_cached: "{{ new_incident.record.number }}"
+        cacheable: true
+
+    - debug:
+
+        # Use the output of the incident creation task to display the incident number
+        msg: "A new incident has been created: {{ new_incident.record.number }}"
