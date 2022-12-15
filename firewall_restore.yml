@@ -1,5 +1,7 @@
 ---
 - hosts: Windows
+  collections:
+    - servicenow.itsm
   
   tasks:
 
