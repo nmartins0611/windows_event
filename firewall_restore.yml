@@ -2,12 +2,7 @@
 - hosts: Windows
   collections:
     - servicenow.itsm
-  vars:
-    SN_INSTANCE:
-    SN_USERNAME:
-    SN_PASSWORD:
     
-  
   tasks:
 
     - name: Disable task event 
@@ -40,10 +35,10 @@
       servicenow.itsm.incident:
         state: new
         caller: "{{ lookup('env', 'SN_USERNAME') }}"
-        short_description: "User created a new incident using Ansible Automation Platform"
-        description: "User {{ lookup('env', 'SN_USERNAME') }} successfully created a new incident!"
-        impact: low
-        urgency: low
+        short_description: "Windows Node is out of compliance"
+        description: "Compliance failure. Attempted change on a compliance item on windows_node01 - Controller has re-applied the policy configuration"
+        impact: high
+        urgency: high
       register: new_incident
       delegate_to: localhost
 
@@ -54,4 +49,4 @@
     - debug:
 
         # Use the output of the incident creation task to display the incident number
-        msg: "A new incident has been created: {{ new_incident.record.number }}"
+        msg: "This remediation was logged: {{ new_incident.record.number }}"
