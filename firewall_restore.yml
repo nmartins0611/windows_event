@@ -2,6 +2,11 @@
 - hosts: Windows
   collections:
     - servicenow.itsm
+  vars:
+    SN_INSTANCE:
+    SN_USERNAME:
+    SN_PASSWORD:
+    
   
   tasks:
 
@@ -34,7 +39,7 @@
     - name: Create incident
       servicenow.itsm.incident:
        instance:
-        host: https://{{ SN_INSTANCE }}.service-now.com/
+        host: "https://{{ SN_INSTANCE }}.service-now.com/"
         username: "{{ SN_USERNAME }}"
         password: "{{ SN_PASSWORD }}"
        state: new
