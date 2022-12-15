@@ -38,7 +38,7 @@
 
     - name: print vars
       debug:
-        msg: "{{ SN_INSTANCE }}" "{{ SN_USERNAME }}" "{{ SN_PASSWORD }}"
+        msg: {{ SN_INSTANCE }}
 
    # - name: Create incident
      # servicenow.itsm.incident:
