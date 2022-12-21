@@ -31,22 +31,22 @@
         state: present
         tags: create_event
 
-  #  - name: Create incident
-   #   servicenow.itsm.incident:
-   #     state: new
-   #     caller: "{{ lookup('env', 'SN_USERNAME') }}"
-   #     short_description: "Windows Node is out of compliance"
-   #     description: "Compliance failure. Attempted change on a compliance item on windows_node01 - Controller has re-applied the policy configuration"
-   #     impact: high
-   #     urgency: high
-   #   register: new_incident
-   #   delegate_to: localhost
+    - name: Create incident
+      servicenow.itsm.incident:
+        state: new
+        caller: "{{ lookup('env', 'SN_USERNAME') }}"
+        short_description: "Windows Node is out of compliance"
+        description: "Compliance failure. Attempted change on a compliance item on windows_node01 - Controller has re-applied the policy configuration"
+        impact: high
+        urgency: high
+      register: new_incident
+      delegate_to: localhost
 
-   # - set_fact:
-   #     incident_number_cached: "{{ new_incident.record.number }}"
-    #    cacheable: true
+    - set_fact:
+        incident_number_cached: "{{ new_incident.record.number }}"
+        cacheable: true
 
-    #- debug:
+    - debug:
 
         # Use the output of the incident creation task to display the incident number
-     #   msg: "This remediation was logged: {{ new_incident.record.number }}"
+        msg: "This remediation was logged: {{ new_incident.record.number }}"
